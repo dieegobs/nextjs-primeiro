@@ -1,4 +1,6 @@
+import { GetStaticProps } from 'next';
 import { Post } from "@/types/Post";
+import { ParsedUrlQuery } from 'querystring';
 
 type Props = {
     post: Post
@@ -19,7 +21,7 @@ const BlogItem = (  { post }: Props) => {
 export default BlogItem;
 
 
-export const getStatickPaths = async() => {
+export const getStaticPaths = async() => {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
     const posts: Post[] = await res.json();
 
@@ -29,9 +31,23 @@ export const getStatickPaths = async() => {
         }
     }));
 
-    return { paths, fallback: false }
+    return { paths, fallback: 'blocking' }
 }
 
-export const getStatickProps = async() => {
 
+interface IParams extends ParsedUrlQuery {
+    id: string
+}
+export const getStaticProps: GetStaticProps = async(context) => {
+    
+    const {id} = context.params as IParams;
+
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    const post = await res.json();
+
+    return {
+        props: {
+            post
+        }
+    }
 }
