@@ -1,3 +1,6 @@
+import { useRouter } from "next/router";
+
 export default function DetailsPost() {
-    return <h1>Página detalhes do postinho</h1>;
+    const { query } = useRouter()
+    return <h1>Página: {JSON.stringify(query)}</h1>;
 }
