@@ -11,7 +11,7 @@ const Todo = () => {
 
     const loadTodos = async () => {
         setLoading(true);
-        const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos');
         const list: Todo[] = await res.json();
         setTodoList(list);
         setLoading(false);
@@ -25,10 +25,9 @@ const Todo = () => {
 
             <ul>
                 {todoList.map((todoItem, index) => (
-                    <li key={index}>{todoItem.title} - {todoItem.completed.toString()}</li>
+                    <li key={index}> {todoItem.title} - {todoItem.completed.toString}</li>
                 ))}
             </ul>
-
         </div>
     );
 }
