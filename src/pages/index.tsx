@@ -8,6 +8,7 @@ export default function Home() {
       <Image 
         src={Logo}
         alt='Logo Ebay'
+        quality={100}
       />
     </div>
   )
