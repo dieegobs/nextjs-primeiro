@@ -11,7 +11,11 @@ export default function Home() {
         quality={100}
       />
 
+    <h1>Página Home</h1>
       <ul>
+      <li> 
+          <Link href="/">Home</Link>
+        </li>
         <li> 
           <Link href="/about">About</Link>
         </li>
